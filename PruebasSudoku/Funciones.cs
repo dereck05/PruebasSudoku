@@ -256,7 +256,7 @@ namespace PruebasSudoku
             {
                 if(orientacion == 1)
                 {
-                    if (pivoteY - 1 >= 0 && pivoteY < N - 1)
+                    if (pivoteY - 1 >= 0 && pivoteY+1 < N && pivoteX +1 < N)
                     {
                         ubi1 = matrizFiguras[pivoteX, pivoteY];
                         ubi2 = matrizFiguras[pivoteX +1, pivoteY ];
@@ -305,19 +305,19 @@ namespace PruebasSudoku
             {
                 if(orientacion == 1)  //horizontal
                 {
-                    if(pivoteX-1 >= 0 && pivoteY+2 < N)
+                    if(pivoteY - 1 >= 0 && pivoteY + 1 < N && pivoteX + 1 < N)
                     {
                         ubi1 = matrizFiguras[pivoteX, pivoteY];
-                        ubi2 = matrizFiguras[pivoteX, pivoteY + 1];
-                        ubi3 = matrizFiguras[pivoteX-1, pivoteY + 1];
-                        ubi4 = matrizFiguras[pivoteX - 1, pivoteY + 2];
+                        ubi2 = matrizFiguras[pivoteX+1, pivoteY ];
+                        ubi3 = matrizFiguras[pivoteX+1, pivoteY - 1];
+                        ubi4 = matrizFiguras[pivoteX , pivoteY + 1];
 
                         if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0))   //Que no haya casillas ocupadas
                         {
                             FigurasArray[pivoteX, pivoteY] = NumFigura;
+                            FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
+                            FigurasArray[pivoteX + 1, pivoteY - 1] = NumFigura;
                             FigurasArray[pivoteX, pivoteY + 1] = NumFigura;
-                            FigurasArray[pivoteX - 1, pivoteY + 1] = NumFigura;
-                            FigurasArray[pivoteX - 1, pivoteY + 2] = NumFigura;
                             NumFigura++;
                             return true;
                         }
@@ -327,19 +327,19 @@ namespace PruebasSudoku
                 }
                 if (orientacion == 2)  //vertical
                 {
-                    if (pivoteY - 1 >= 0 && pivoteX + 2 < N)
+                    if (pivoteY + 1 < N && pivoteX + 2 < N)
                     {
                         ubi1 = matrizFiguras[pivoteX, pivoteY];
                         ubi2 = matrizFiguras[pivoteX+1, pivoteY ];
-                        ubi3 = matrizFiguras[pivoteX + 1, pivoteY - 1];
-                        ubi4 = matrizFiguras[pivoteX + 2, pivoteY - 1];
+                        ubi3 = matrizFiguras[pivoteX + 1, pivoteY + 1];
+                        ubi4 = matrizFiguras[pivoteX + 2, pivoteY + 1];
 
                         if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0))   //Que no haya casillas ocupadas
                         {
                             FigurasArray[pivoteX, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
-                            FigurasArray[pivoteX + 1, pivoteY - 1] = NumFigura;
-                            FigurasArray[pivoteX + 2, pivoteY - 1] = NumFigura;
+                            FigurasArray[pivoteX + 1, pivoteY + 1] = NumFigura;
+                            FigurasArray[pivoteX + 2, pivoteY + 1] = NumFigura;
                             NumFigura++;
                             return true;
                         }
@@ -427,7 +427,7 @@ namespace PruebasSudoku
         public void GenerarFiguras()
         {
             Random rnd = new Random();
-            string[] TipoFigura = new string[7] { "cuadrado", "linea" ,"snake","solo","ele","te","dos"};
+            string[] TipoFigura = new string[7] { "ele", "cuadrado", "linea" ,"snake","solo","te","dos"};
             int[,] ArrayFiguras = new int[N, N];
             int ori = 0;
             for(int i = 0; i < N; i++)
@@ -436,19 +436,19 @@ namespace PruebasSudoku
                 {
                     if (FigurasArray[i, j] == 0)
                     {
-                        int fig = rnd.Next(0, 5);
-                        if (fig == 4 || fig == 5)
-                            ori = rnd.Next(1, 4);
+                        int fig = rnd.Next(0, 6);
+                        if (fig == 0)
+                            ori = rnd.Next(1, 5);
                         else
-                            ori = rnd.Next(1, 2);
+                            ori = rnd.Next(1, 3);
 
                         while (ComprobarEspacio(FigurasArray, TipoFigura[fig], ori, i, j) != true)
                         {
-                            fig = rnd.Next(0, 5);
-                            if (fig == 4 || fig == 5)
-                                ori = rnd.Next(1, 4);
+                            fig = rnd.Next(0, 6);
+                            if (fig == 0)
+                                ori = rnd.Next(1, 5);
                             else
-                                ori = rnd.Next(1, 2);
+                                ori = rnd.Next(1, 3);
                         }
                         Print();
                     }
