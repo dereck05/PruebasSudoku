@@ -10,7 +10,7 @@ namespace PruebasSudoku
     {
         
 
-        int N { set; get; } //este es el tam del tablero
+        int N { set; get; } //este es el tam del tablero 
         int[,] EspacioSoluciones { get; set; }
         int[,] Tablero { get; set; }
         int NumFigura { get; set; }
@@ -361,6 +361,49 @@ namespace PruebasSudoku
                 else
                     return false;
             }
+            if (figura == "dos")
+            {
+                if (orientacion == 1)   //vertical
+                {
+                    if (pivoteX + 1 < N)
+                    {
+                        ubi1 = matrizFiguras[pivoteX, pivoteY];
+                        ubi2 = matrizFiguras[pivoteX + 1, pivoteY];
+
+                        if (ubi1 == 0 && ubi2 == 0)
+                        {
+                            FigurasArray[pivoteX, pivoteY] = NumFigura;
+                            FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
+                            NumFigura++;
+                            return true;
+                        }
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
+                }
+                if (orientacion == 2)   //horizontal
+                {
+                    if (pivoteY + 1 < N)
+                    {
+                        ubi1 = matrizFiguras[pivoteX, pivoteY];
+                        ubi2 = matrizFiguras[pivoteX , pivoteY+1];
+
+                        if (ubi1 == 0 && ubi2 == 0)
+                        {
+                            FigurasArray[pivoteX, pivoteY] = NumFigura;
+                            FigurasArray[pivoteX , pivoteY+1] = NumFigura;
+                            NumFigura++;
+                            return true;
+                        }
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
+                }
+            }
 
 
             return false;
@@ -384,7 +427,7 @@ namespace PruebasSudoku
         public void GenerarFiguras()
         {
             Random rnd = new Random();
-            string[] TipoFigura = new string[6] { "cuadrado", "linea" ,"snake","solo","ele","te"};
+            string[] TipoFigura = new string[7] { "cuadrado", "linea" ,"snake","solo","ele","te","dos"};
             int[,] ArrayFiguras = new int[N, N];
             int ori = 0;
             for(int i = 0; i < N; i++)
