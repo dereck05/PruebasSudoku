@@ -26,13 +26,7 @@ namespace PruebasSudoku
             NumFigura = 1;
             FigurasArray = new int[N, N];
 
-            for (int i = 0; i < N; i++)
-            {
-                for (int j = 0; j < N; j++)
-                {
-                    FigurasArray[i, j] = 0;
-                }
-            }
+            
 
         }
 
@@ -70,7 +64,7 @@ namespace PruebasSudoku
             int ubi2 = 0;
             int ubi3 = 0;
             int ubi4 = 0;
-
+            
 
             if (figura == "cuadrado") {
                 if (pivoteY + 1 < N && pivoteX + 1 < N)      //Que no se salga de los limites
@@ -414,13 +408,14 @@ namespace PruebasSudoku
             string S = "";
             for(int i = 0; i < N; i++)
             {
-                Console.WriteLine(S);
+                
                 S = "";
                 for(int j = 0; j < N; j++)
                 {
                     string myStr = FigurasArray[i, j].ToString();
                     S += myStr + "    ";
                 }
+                Console.WriteLine(S);
             }
         }
 
@@ -428,7 +423,7 @@ namespace PruebasSudoku
         {
             Random rnd = new Random();
             string[] TipoFigura = new string[7] { "ele", "cuadrado", "linea" ,"snake","solo","te","dos"};
-            int[,] ArrayFiguras = new int[N, N];
+            
             int ori = 0;
             for(int i = 0; i < N; i++)
             {
@@ -436,7 +431,7 @@ namespace PruebasSudoku
                 {
                     if (FigurasArray[i, j] == 0)
                     {
-                        int fig = rnd.Next(0, 6);
+                        int fig = rnd.Next(0, 7);
                         if (fig == 0)
                             ori = rnd.Next(1, 5);
                         else
@@ -444,13 +439,14 @@ namespace PruebasSudoku
 
                         while (ComprobarEspacio(FigurasArray, TipoFigura[fig], ori, i, j) != true)
                         {
-                            fig = rnd.Next(0, 6);
+                            fig = rnd.Next(0, 7);
                             if (fig == 0)
                                 ori = rnd.Next(1, 5);
                             else
                                 ori = rnd.Next(1, 3);
                         }
                         Print();
+                        Console.WriteLine(" ");
                     }
 
                     

@@ -10,7 +10,7 @@ namespace PruebasSudoku
     {
         static void Main(string[] args)
         {
-            int N = 6;
+            int N = 5;
             int[,] ArrayFiguras = new int[N, N];
             for (int i = 0; i < N; i++)
             {
