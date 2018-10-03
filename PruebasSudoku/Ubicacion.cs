@@ -19,5 +19,13 @@ namespace PruebasSudoku
             ValY = y;
         }
 
+        public int GetX()
+        {
+            return ValX;
+        }
+        public int GetY()
+        {
+            return ValY;
+        }
     }
 }

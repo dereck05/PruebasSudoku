@@ -30,30 +30,33 @@ namespace PruebasSudoku
 
         }
 
-        public bool LlenoFiguras(int[,] lista)
+        public Ubicacion NextEmpty(int[,] tab)
         {
-            bool Flag = true;
-            int i = 0;
-            int j = 0;
-            while((i < lista.Length) && (Flag = true))
+            Ubicacion ubi;
+            for(int i = 0; i < N; i++)
             {
-                while((j < lista.Length) && (Flag = true))
+                for(int j = 0; j < N; j++)
                 {
-                    if (lista[i, j] == 0)
+                    if(tab[i,j] == 0)
                     {
-                        Flag = false;
-                        j++;
+                        ubi = new Ubicacion(i, j);
+                        return ubi;
                     }
-                    else
-                        j++;
-
                 }
-                i++;
             }
-            if (Flag == true)
-                return true;
+            ubi = new Ubicacion(-1, -1);
+            return ubi;
+
+        }
+
+        public char GenerarOperacion()
+        {
+            Random rnd = new Random();
+            int aleatorio = rnd.Next(0,2);
+            if (aleatorio == 0)
+                return '+';
             else
-                return false;
+                return 'x';
 
         }
 
@@ -80,6 +83,20 @@ namespace PruebasSudoku
                         FigurasArray[pivoteX, pivoteY+1] = NumFigura;
                         FigurasArray[pivoteX+1, pivoteY] = NumFigura;
                         FigurasArray[pivoteX+1, pivoteY+1] = NumFigura;
+
+                        Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
+                        Ubicacion u2 = new Ubicacion(pivoteX, pivoteY + 1);
+                        Ubicacion u3 = new Ubicacion(pivoteX + 1, pivoteY);
+                        Ubicacion u4 = new Ubicacion(pivoteX + 1, pivoteY + 1);
+                        Ubicacion[] list = new Ubicacion[4];
+                        list[0] = u1;
+                        list[1] = u2;
+                        list[2] = u3;
+                        list[3] = u4;
+                        Figura fig = new Figura(list, "cuadrado");
+                        
+                        SetListaFiguras(fig);
+
                         NumFigura++;
                         return true;
                     }
@@ -110,6 +127,20 @@ namespace PruebasSudoku
                                 FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
                                 FigurasArray[pivoteX + 2, pivoteY] = NumFigura;
                                 FigurasArray[pivoteX + 2, pivoteY + 1] = NumFigura;
+
+                                Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
+                                Ubicacion u2 = new Ubicacion(pivoteX + 1, pivoteY );
+                                Ubicacion u3 = new Ubicacion(pivoteX + 2, pivoteY);
+                                Ubicacion u4 = new Ubicacion(pivoteX + 2, pivoteY + 1);
+                                Ubicacion[] list = new Ubicacion[4];
+                                list[0] = u1;
+                                list[1] = u2;
+                                list[2] = u3;
+                                list[3] = u4;
+                                Figura fig = new Figura(list, "ele");
+                                
+                                SetListaFiguras(fig);
+
                                 NumFigura++;
                                 return true;
                             }
@@ -134,6 +165,20 @@ namespace PruebasSudoku
                                 FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
                                 FigurasArray[pivoteX + 2, pivoteY] = NumFigura;
                                 FigurasArray[pivoteX + 2, pivoteY - 1] = NumFigura;
+
+                                Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
+                                Ubicacion u2 = new Ubicacion(pivoteX + 1, pivoteY );
+                                Ubicacion u3 = new Ubicacion(pivoteX + 2, pivoteY);
+                                Ubicacion u4 = new Ubicacion(pivoteX + 2, pivoteY - 1);
+                                Ubicacion[] list = new Ubicacion[4];
+                                list[0] = u1;
+                                list[1] = u2;
+                                list[2] = u3;
+                                list[3] = u4;
+                                Figura fig = new Figura(list, "ele");
+                                
+                                SetListaFiguras(fig);
+
                                 NumFigura++;
                                 return true;
                             }
@@ -160,6 +205,20 @@ namespace PruebasSudoku
                                     FigurasArray[pivoteX, pivoteY + 1] = NumFigura;
                                     FigurasArray[pivoteX + 1, pivoteY + 1] = NumFigura;
                                     FigurasArray[pivoteX + 2, pivoteY + 1] = NumFigura;
+
+                                    Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
+                                    Ubicacion u2 = new Ubicacion(pivoteX, pivoteY + 1);
+                                    Ubicacion u3 = new Ubicacion(pivoteX + 1, pivoteY + 1);
+                                    Ubicacion u4 = new Ubicacion(pivoteX + 2, pivoteY + 1);
+                                    Ubicacion[] list = new Ubicacion[4];
+                                    list[0] = u1;
+                                    list[1] = u2;
+                                    list[2] = u3;
+                                    list[3] = u4;
+                                    Figura fig = new Figura(list, "ele");
+                                    
+                                    SetListaFiguras(fig);
+
                                     NumFigura++;
                                     return true;
                                 }
@@ -179,6 +238,20 @@ namespace PruebasSudoku
                                     FigurasArray[pivoteX, pivoteY + 1] = NumFigura;
                                     FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
                                     FigurasArray[pivoteX + 2, pivoteY] = NumFigura;
+
+                                    Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
+                                    Ubicacion u2 = new Ubicacion(pivoteX, pivoteY + 1);
+                                    Ubicacion u3 = new Ubicacion(pivoteX + 1, pivoteY );
+                                    Ubicacion u4 = new Ubicacion(pivoteX + 2, pivoteY );
+                                    Ubicacion[] list = new Ubicacion[4];
+                                    list[0] = u1;
+                                    list[1] = u2;
+                                    list[2] = u3;
+                                    list[3] = u4;
+                                    Figura fig = new Figura(list, "ele");
+                                   
+                                    SetListaFiguras(fig);
+
                                     NumFigura++;
                                     return true;
                                 }
@@ -212,6 +285,20 @@ namespace PruebasSudoku
                             FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 2, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 3, pivoteY] = NumFigura;
+
+                            Ubicacion u1 = new Ubicacion(pivoteX , pivoteY);
+                            Ubicacion u2 = new Ubicacion(pivoteX + 1, pivoteY );
+                            Ubicacion u3 = new Ubicacion(pivoteX + 2, pivoteY );
+                            Ubicacion u4 = new Ubicacion(pivoteX + 3, pivoteY);
+                            Ubicacion[] list = new Ubicacion[4];
+                            list[0] = u1;
+                            list[1] = u2;
+                            list[2] = u3;
+                            list[3] = u4;
+                            Figura fig = new Figura(list, "linea");
+                            
+                            SetListaFiguras(fig);
+
                             NumFigura++;
                             return true;
                         }
@@ -236,6 +323,20 @@ namespace PruebasSudoku
                             FigurasArray[pivoteX, pivoteY + 1] = NumFigura;
                             FigurasArray[pivoteX, pivoteY + 2] = NumFigura;
                             FigurasArray[pivoteX, pivoteY + 3] = NumFigura;
+
+                            Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
+                            Ubicacion u2 = new Ubicacion(pivoteX, pivoteY + 1);
+                            Ubicacion u3 = new Ubicacion(pivoteX, pivoteY + 2);
+                            Ubicacion u4 = new Ubicacion(pivoteX , pivoteY + 3);
+                            Ubicacion[] list = new Ubicacion[4];
+                            list[0] = u1;
+                            list[1] = u2;
+                            list[2] = u3;
+                            list[3] = u4;
+                            Figura fig = new Figura(list, "linea");
+                            
+                            SetListaFiguras(fig);
+
                             NumFigura++;
                             return true;
                         }
@@ -263,6 +364,19 @@ namespace PruebasSudoku
                             FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY - 1] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY + 1] = NumFigura;
+
+                            Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
+                            Ubicacion u2 = new Ubicacion(pivoteX+1, pivoteY );
+                            Ubicacion u3 = new Ubicacion(pivoteX+1, pivoteY - 1);
+                            Ubicacion u4 = new Ubicacion(pivoteX + 1, pivoteY + 1);
+                            Ubicacion[] list = new Ubicacion[4];
+                            list[0] = u1;
+                            list[1] = u2;
+                            list[2] = u3;
+                            list[3] = u4;
+                            Figura fig = new Figura(list, "te");
+                            
+                            SetListaFiguras(fig);
                             NumFigura++;
                             return true;
                         }
@@ -285,6 +399,18 @@ namespace PruebasSudoku
                             FigurasArray[pivoteX, pivoteY + 1] = NumFigura;
                             FigurasArray[pivoteX, pivoteY + 2] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY + 1] = NumFigura;
+
+                            Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
+                            Ubicacion u2 = new Ubicacion(pivoteX , pivoteY+1);
+                            Ubicacion u3 = new Ubicacion(pivoteX , pivoteY + 2);
+                            Ubicacion u4 = new Ubicacion(pivoteX + 1, pivoteY + 1);
+                            Ubicacion[] list = new Ubicacion[4];
+                            list[0] = u1;
+                            list[1] = u2;
+                            list[2] = u3;
+                            list[3] = u4;
+                            Figura fig = new Figura(list, "te");
+                            SetListaFiguras(fig);
                             NumFigura++;
                             return true;
                         }
@@ -312,6 +438,20 @@ namespace PruebasSudoku
                             FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY - 1] = NumFigura;
                             FigurasArray[pivoteX, pivoteY + 1] = NumFigura;
+
+                            Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
+                            Ubicacion u2 = new Ubicacion(pivoteX + 1, pivoteY);
+                            Ubicacion u3 = new Ubicacion(pivoteX + 1, pivoteY - 1);
+                            Ubicacion u4 = new Ubicacion(pivoteX , pivoteY + 1);
+                            Ubicacion[] list = new Ubicacion[4];
+                            list[0] = u1;
+                            list[1] = u2;
+                            list[2] = u3;
+                            list[3] = u4;
+                            Figura fig = new Figura(list, "snake");
+                            int index = ListaFiguras.Length;
+                            SetListaFiguras(fig);
+
                             NumFigura++;
                             return true;
                         }
@@ -334,6 +474,20 @@ namespace PruebasSudoku
                             FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY + 1] = NumFigura;
                             FigurasArray[pivoteX + 2, pivoteY + 1] = NumFigura;
+
+                            Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
+                            Ubicacion u2 = new Ubicacion(pivoteX + 1, pivoteY);
+                            Ubicacion u3 = new Ubicacion(pivoteX+1, pivoteY+1);
+                            Ubicacion u4 = new Ubicacion(pivoteX + 2, pivoteY+1);
+                            Ubicacion[] list = new Ubicacion[4];
+                            list[0] = u1;
+                            list[1] = u2;
+                            list[2] = u3;
+                            list[3] = u4;
+                            Figura fig = new Figura(list, "snake");
+                            int index = ListaFiguras.Length;
+                            SetListaFiguras(fig);
+
                             NumFigura++;
                             return true;
                         }
@@ -349,6 +503,14 @@ namespace PruebasSudoku
                 if (ubi1 == 0)
                 {
                     FigurasArray[pivoteX, pivoteY] = NumFigura;
+                    Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
+                    
+                    Ubicacion[] list = new Ubicacion[1];
+                    list[0] = u1;
+                   
+                    Figura fig = new Figura(list, "solo");
+                    int index = ListaFiguras.Length;
+                    SetListaFiguras(fig);
                     NumFigura++;
                     return true;
                 }
@@ -368,6 +530,14 @@ namespace PruebasSudoku
                         {
                             FigurasArray[pivoteX, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
+                            Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
+                            Ubicacion u2 = new Ubicacion(pivoteX+1, pivoteY);
+                            Ubicacion[] list = new Ubicacion[2];
+                            list[0] = u1;
+                            list[1] = u2;
+                            Figura fig = new Figura(list,"dos");
+                            int index = ListaFiguras.Length;
+                            SetListaFiguras(fig);
                             NumFigura++;
                             return true;
                         }
@@ -388,6 +558,14 @@ namespace PruebasSudoku
                         {
                             FigurasArray[pivoteX, pivoteY] = NumFigura;
                             FigurasArray[pivoteX , pivoteY+1] = NumFigura;
+                            Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
+                            Ubicacion u2 = new Ubicacion(pivoteX, pivoteY+1);
+                            Ubicacion[] list = new Ubicacion[2];
+                            list[0] = u1;
+                            list[1] = u2;
+                            Figura fig = new Figura(list,"dos");
+                            int index = ListaFiguras.Length;
+                            SetListaFiguras(fig);
                             NumFigura++;
                             return true;
                         }
@@ -403,7 +581,7 @@ namespace PruebasSudoku
             return false;
         }
     
-        public void Print()
+        public void ImprimirTableroFiguras()   //Este imprime el backtracking
         {
             string S = "";
             for(int i = 0; i < N; i++)
@@ -413,7 +591,7 @@ namespace PruebasSudoku
                 for(int j = 0; j < N; j++)
                 {
                     string myStr = FigurasArray[i, j].ToString();
-                    S += myStr + "    ";
+                    S += myStr + "       ";
                 }
                 Console.WriteLine(S);
             }
@@ -445,7 +623,7 @@ namespace PruebasSudoku
                             else
                                 ori = rnd.Next(1, 3);
                         }
-                        Print();
+                        //Print();
                         Console.WriteLine(" ");
                     }
 
@@ -454,6 +632,137 @@ namespace PruebasSudoku
             }
 
            
+        }
+
+        public void ImprimirFiguras()
+        {
+            int cont = 0;
+            
+            while(ListaFiguras[cont] != null)
+            {
+                Figura f = ListaFiguras[cont];
+                string tipoFigura = f.GetTipo();
+                Ubicacion[] ubicaciones = f.GetLista();
+                Console.WriteLine("Figura:" + tipoFigura);
+                int cont2 = 0;
+               while(cont2<ubicaciones.Length)
+                {
+                    Ubicacion ubi = ubicaciones[cont2];
+                    string str1 = ubi.GetX().ToString();
+                    string str2 = ubi.GetY().ToString();
+                    Console.WriteLine("Ubicaciones: " + "[" + str1 + "," + str2 + "]");
+                    cont2++;
+                }
+                cont++;
+            }
+        }
+
+        public void SetListaFiguras(Figura fig)
+        {
+            int cont = 0;
+            bool bandera = false;
+            while(bandera != true)
+            {
+                if (ListaFiguras[cont] == null)
+                {
+                    ListaFiguras[cont] = fig;
+                    bandera = true;
+                }
+                else
+                    cont++;
+            }
+        }
+        
+       
+
+        public bool VerificarFilas(int[,] tablero, int num, int coordenadaX,int coordenadaY)
+        {
+            int[] fila = new int[N];
+            int cont = 0;
+            
+            for(int i = 0; i < N; i++)
+            {
+                for(int j = 0; j < N; j++)
+                {
+                    if( j == coordenadaY)
+                    {
+                        fila[cont] = tablero[i, j];
+                        cont++;
+                    }
+                }
+            }
+
+            for (int k = 0; k < N; k++)
+            {
+                if (num == fila[k])
+                    return false;
+            }
+            return true;
+        }
+        public bool VerificarColumnas(int[,] tablero, int num, int coordenadaX, int coordenadaY)
+        {
+            int[] columna = new int[N];
+            int cont = 0;
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    if (i == coordenadaX)
+                    {
+                        columna[cont] = tablero[i, j];
+                        cont++;
+                    }
+                }
+            }
+
+            for (int k = 0; k < N; k++)
+            {
+                if (num == columna[k])
+                    return false;
+            }
+            return true;
+        }
+        public int[,] GenerarSudoku()
+        {
+            int cont = 0;
+            Random rnd = new Random();
+            while (cont <= N)
+            {
+                
+                int aleatorioX = rnd.Next(0, N);
+                int aleatorioY = rnd.Next(0, N);
+                int aleatorioNum = rnd.Next(1, N + 1);
+                if(VerificarColumnas(Tablero,aleatorioNum,aleatorioX,aleatorioY) && VerificarFilas(Tablero,aleatorioNum, aleatorioX, aleatorioY))
+                    Tablero[aleatorioX, aleatorioY] = aleatorioNum;
+                    cont++;
+            }
+            return Tablero;
+
+        }
+
+
+        public bool Resolver(int [,] tablero)
+        {
+            Ubicacion ubi = NextEmpty(tablero);
+            if (ubi.GetX() == -1 && ubi.GetY() == -1)       //resuelto
+                return true;
+
+            int parX = ubi.GetX();
+            int parY = ubi.GetY();
+
+            for(int i = 1; i <= N; i++)
+            {
+                if(VerificarColumnas(tablero,i,parX,parY) && VerificarFilas(tablero,i, parX, parY))
+                {
+                    Tablero[parX, parY] = i;
+
+                    if (Resolver(tablero))
+                        return true;
+
+                    tablero[parX, parY] = 0;
+                }
+            }
+            return false;
         }
 
     }
