@@ -597,6 +597,22 @@ namespace PruebasSudoku
             }
         }
 
+        public void Print(int[,] arr)   //Funcion que imprime un array X
+        {
+            string S = "";
+            for (int i = 0; i < N; i++)
+            {
+
+                S = "";
+                for (int j = 0; j < N; j++)
+                {
+                    string myStr = arr[i, j].ToString();
+                    S += myStr + "       ";
+                }
+                Console.WriteLine(S);
+            }
+        }
+
         public void GenerarFiguras()
         {
             Random rnd = new Random();
@@ -722,6 +738,49 @@ namespace PruebasSudoku
             }
             return true;
         }
+        
+        public Figura BuscarFigura(int x , int y)
+        {
+            Figura resul = null;
+            int cont = 0;
+            bool flag = false;
+            while (ListaFiguras != null && flag == false) {
+                Figura fig = ListaFiguras[cont];
+                Ubicacion[] ubi = fig.GetLista();
+                for(int i = 0; i < ubi.Length; i++)
+                {
+                    int ubiX = ubi[i].GetX();
+                    int ubiY = ubi[i].GetY();
+                    if(ubiX == x && ubiY == y)
+                    {
+                        resul = fig;
+                        flag = true;
+                        break;
+                    }
+                }
+                cont++;
+
+
+            }
+            return resul;
+        }
+        public bool VerificarFigura(int [,] tablero, int num, int coordenadaX, int coordenadaY)
+        {
+            Figura fig = BuscarFigura(coordenadaX, coordenadaY);
+            Ubicacion[] listaPosiciones = fig.GetLista();
+            for(int i = 0; i < listaPosiciones.Length; i++)
+            {
+                Ubicacion ubi = listaPosiciones[i];
+                int x = ubi.GetX();
+                int y = ubi.GetY();
+                int numTablero = tablero[x, y];
+                if (num == numTablero)
+                    return false;
+            }
+            return true;
+
+        }
+        
         public int[,] GenerarSudoku()
         {
             int cont = 0;
@@ -732,7 +791,7 @@ namespace PruebasSudoku
                 int aleatorioX = rnd.Next(0, N);
                 int aleatorioY = rnd.Next(0, N);
                 int aleatorioNum = rnd.Next(1, N + 1);
-                if(VerificarColumnas(Tablero,aleatorioNum,aleatorioX,aleatorioY) && VerificarFilas(Tablero,aleatorioNum, aleatorioX, aleatorioY))
+                if(VerificarColumnas(Tablero,aleatorioNum,aleatorioX,aleatorioY) && VerificarFilas(Tablero,aleatorioNum, aleatorioX, aleatorioY)&&VerificarFigura(Tablero, aleatorioNum, aleatorioX, aleatorioY))
                     Tablero[aleatorioX, aleatorioY] = aleatorioNum;
                     cont++;
             }
@@ -752,14 +811,19 @@ namespace PruebasSudoku
 
             for(int i = 1; i <= N; i++)
             {
-                if(VerificarColumnas(tablero,i,parX,parY) && VerificarFilas(tablero,i, parX, parY))
+                if (VerificarColumnas(tablero, i, parX, parY) && VerificarFilas(tablero, i, parX, parY) && VerificarFigura(tablero, i, parX, parY))
                 {
                     Tablero[parX, parY] = i;
-
+                    //Console.WriteLine("-------------------------------------------------------------------------");
+                    //Print(tablero);
                     if (Resolver(tablero))
                         return true;
 
+
+                    //Console.WriteLine("**************************************************************************");
                     tablero[parX, parY] = 0;
+                    //Print(tablero);
+                    //Console.WriteLine("**************************************************************************");
                 }
             }
             return false;

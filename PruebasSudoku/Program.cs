@@ -10,7 +10,7 @@ namespace PruebasSudoku
     {
         static void Main(string[] args)
         {
-            int N = 6;
+            int N = 18;
             int[,] ArrayFiguras = new int[N, N];
 
             TimeSpan stop;
@@ -21,26 +21,27 @@ namespace PruebasSudoku
             
             f.GenerarFiguras();
             f.ImprimirTableroFiguras();
-            f.ImprimirFiguras();
+            //f.ImprimirFiguras();
+            Console.WriteLine("------------------------------------------------------------------------------------------");
             
             
 
 
-
-            /*
+            
             int[,] sudoku = f.GenerarSudoku();
             f.Print(sudoku);
             Console.WriteLine("  ");
-
+            Console.WriteLine("------------------------------------------------------------------------------------------");
             if (true == f.Resolver(sudoku))
                 f.Print(sudoku);
             else
-                Console.WriteLine("Mamaste");
+                Console.WriteLine("Fail");
 
             stop = new TimeSpan(DateTime.Now.Ticks);
+            Console.WriteLine();
             Console.WriteLine(stop.Subtract(start).TotalMilliseconds);
 
-            */
+            
             Console.ReadKey();      //para que no se cierre la ventana
         }
     }
