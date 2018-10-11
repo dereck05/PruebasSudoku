@@ -10,8 +10,9 @@ namespace PruebasSudoku
     {
         static void Main(string[] args)
         {
-            int N = 18;
-            int[,] ArrayFiguras = new int[N, N];
+            
+            int N = 5;
+            
 
             TimeSpan stop;
             TimeSpan start = new TimeSpan(DateTime.Now.Ticks);
@@ -21,6 +22,8 @@ namespace PruebasSudoku
             
             f.GenerarFiguras();
             f.ImprimirTableroFiguras();
+            Console.WriteLine("------------------------------------------------------------------------------------------");
+            f.ImprimirOperaciones();
             //f.ImprimirFiguras();
             Console.WriteLine("------------------------------------------------------------------------------------------");
             
@@ -30,6 +33,8 @@ namespace PruebasSudoku
             
             int[,] sudoku = f.GenerarSudoku();
             f.Print(sudoku);
+
+            /*
             Console.WriteLine("  ");
             Console.WriteLine("------------------------------------------------------------------------------------------");
             if (true == f.Resolver(sudoku))
@@ -41,8 +46,11 @@ namespace PruebasSudoku
             Console.WriteLine();
             Console.WriteLine(stop.Subtract(start).TotalMilliseconds);
 
-            
+            */
             Console.ReadKey();      //para que no se cierre la ventana
+          
+            
+
         }
     }
 }
