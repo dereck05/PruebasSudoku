@@ -97,7 +97,7 @@ namespace PruebasSudoku
                         list[2] = u3;
                         list[3] = u4;
                         int nOper = GenerarNumeroOperacion(1);
-                        Figura fig = new Figura(list, "cuadrado",nOper, 1,0);
+                        Figura fig = new Figura(list, "cuadrado",nOper, 1,0,0);
                         
                         SetListaFiguras(fig);
 
@@ -142,7 +142,7 @@ namespace PruebasSudoku
                                 list[2] = u3;
                                 list[3] = u4;
                                 int nOper = GenerarNumeroOperacion(1);
-                                Figura fig = new Figura(list, "ele", nOper,1,0);
+                                Figura fig = new Figura(list, "ele", nOper,1,0,0);
                                 
                                 SetListaFiguras(fig);
 
@@ -181,7 +181,7 @@ namespace PruebasSudoku
                                 list[2] = u3;
                                 list[3] = u4;
                                 int nOper = GenerarNumeroOperacion(1);
-                                Figura fig = new Figura(list, "ele",nOper,1,0);
+                                Figura fig = new Figura(list, "ele",nOper,1,0,0);
                                 
                                 SetListaFiguras(fig);
 
@@ -222,7 +222,7 @@ namespace PruebasSudoku
                                     list[2] = u3;
                                     list[3] = u4;
                                     int nOper = GenerarNumeroOperacion(1);
-                                    Figura fig = new Figura(list, "ele", nOper, 1, 0);
+                                    Figura fig = new Figura(list, "ele", nOper, 1, 0,0);
 
                                     SetListaFiguras(fig);
 
@@ -256,7 +256,7 @@ namespace PruebasSudoku
                                     list[2] = u3;
                                     list[3] = u4;
                                     int nOper = GenerarNumeroOperacion(1);
-                                    Figura fig = new Figura(list, "ele", nOper, 1, 0);
+                                    Figura fig = new Figura(list, "ele", nOper, 1, 0,0);
 
                                     SetListaFiguras(fig);
 
@@ -304,7 +304,7 @@ namespace PruebasSudoku
                             list[2] = u3;
                             list[3] = u4;
                             int nOper = GenerarNumeroOperacion(1);
-                            Figura fig = new Figura(list, "linea", nOper, 1, 0);
+                            Figura fig = new Figura(list, "linea", nOper, 1, 0,0);
 
                             SetListaFiguras(fig);
 
@@ -343,7 +343,7 @@ namespace PruebasSudoku
                             list[2] = u3;
                             list[3] = u4;
                             int nOper = GenerarNumeroOperacion(1);
-                            Figura fig = new Figura(list, "linea", nOper, 1, 0);
+                            Figura fig = new Figura(list, "linea", nOper, 1, 0, 0);
 
                             SetListaFiguras(fig);
 
@@ -385,7 +385,7 @@ namespace PruebasSudoku
                             list[2] = u3;
                             list[3] = u4;
                             int nOper = GenerarNumeroOperacion(1);
-                            Figura fig = new Figura(list, "te", nOper, 1, 0);
+                            Figura fig = new Figura(list, "te", nOper, 1, 0,0);
 
                             SetListaFiguras(fig);
                             NumFigura++;
@@ -421,7 +421,7 @@ namespace PruebasSudoku
                             list[2] = u3;
                             list[3] = u4;
                             int nOper = GenerarNumeroOperacion(1);
-                            Figura fig = new Figura(list, "te", nOper, 1, 0);
+                            Figura fig = new Figura(list, "te", nOper, 1, 0,0);
 
                             SetListaFiguras(fig);
                             NumFigura++;
@@ -462,7 +462,7 @@ namespace PruebasSudoku
                             list[2] = u3;
                             list[3] = u4;
                             int nOper = GenerarNumeroOperacion(1);
-                            Figura fig = new Figura(list, "snake", nOper, 1, 0);
+                            Figura fig = new Figura(list, "snake", nOper, 1, 0,0);
 
                             int index = ListaFiguras.Length;
                             SetListaFiguras(fig);
@@ -501,7 +501,7 @@ namespace PruebasSudoku
                             list[3] = u4;
 
                             int nOper = GenerarNumeroOperacion(1);
-                            Figura fig = new Figura(list, "snake", nOper, 1, 0);
+                            Figura fig = new Figura(list, "snake", nOper, 1, 0,0);
 
                             int index = ListaFiguras.Length;
                             SetListaFiguras(fig);
@@ -527,7 +527,7 @@ namespace PruebasSudoku
                     list[0] = u1;
 
                     
-                    Figura fig = new Figura(list, "solo", 0, 1, 0);
+                    Figura fig = new Figura(list, "solo", 0, 1, 0,0);
 
                     int index = ListaFiguras.Length;
                     SetListaFiguras(fig);
@@ -557,7 +557,7 @@ namespace PruebasSudoku
                             list[1] = u2;
 
                             int nOper = GenerarNumeroOperacion(2);
-                            Figura fig = new Figura(list, "dos", nOper, 2, 1);
+                            Figura fig = new Figura(list, "dos", nOper, 2, 1,0);
 
                             int index = ListaFiguras.Length;
                             SetListaFiguras(fig);
@@ -587,7 +587,7 @@ namespace PruebasSudoku
                             list[0] = u1;
                             list[1] = u2;
                             int nOper = GenerarNumeroOperacion(2);
-                            Figura fig = new Figura(list, "dos", nOper, 2, 1);
+                            Figura fig = new Figura(list, "dos", nOper, 2, 1,0);
                             int index = ListaFiguras.Length;
                             SetListaFiguras(fig);
                             NumFigura++;
@@ -693,7 +693,7 @@ namespace PruebasSudoku
                 {
                     
                     num = rnd.Next(2, (N * (N - 1))+1);
-                    if (VerificarPrimo(num) == false)
+                    if ((VerificarPrimo(num) == false) && (MultipFactible(num) == true))
                         flag = false;
                         
                 }
@@ -701,6 +701,20 @@ namespace PruebasSudoku
 
             }
             
+        }
+        public bool MultipFactible(int n)
+        {
+            for(int i = 1; i <= N; i++)
+            {
+                for(int j = 1; j <= N; j++)
+                {
+                   
+                    int mul = i * j;
+                    if ((mul == n) &&(i != j))
+                        return true;
+                }
+            }
+            return false;
         }
 
         public void ImprimirFiguras()
@@ -760,49 +774,36 @@ namespace PruebasSudoku
         
        
 
-        public bool VerificarFilas(int[,] tablero, int num, int coordenadaX,int coordenadaY)
+        public bool VerificarFilasYColumnas(int[,] tablero, int num, int coordenadaX,int coordenadaY)
         {
             int[] fila = new int[N];
-            int cont = 0;
+            int[] columna = new int[N];
+            int contF = 0;
+            int contCol = 0;
             
             for(int i = 0; i < N; i++)
             {
                 for(int j = 0; j < N; j++)
                 {
-                    if( j == coordenadaY)
+                    if( (j == coordenadaY)|| (i == coordenadaX))
                     {
-                        fila[cont] = tablero[i, j];
-                        cont++;
+                        if (j == coordenadaY)
+                        {
+                            fila[contF] = tablero[i, j];
+                            contF++;
+                        }
+                        if (i == coordenadaX)
+                        {
+                            columna[contCol] = tablero[i, j];
+                            contCol++;
+                        }
                     }
                 }
             }
 
             for (int k = 0; k < N; k++)
             {
-                if (num == fila[k])
-                    return false;
-            }
-            return true;
-        }
-        public bool VerificarColumnas(int[,] tablero, int num, int coordenadaX, int coordenadaY)
-        {
-            int[] columna = new int[N];
-            int cont = 0;
-            for (int i = 0; i < N; i++)
-            {
-                for (int j = 0; j < N; j++)
-                {
-                    if (i == coordenadaX)
-                    {
-                        columna[cont] = tablero[i, j];
-                        cont++;
-                    }
-                }
-            }
-
-            for (int k = 0; k < N; k++)
-            {
-                if (num == columna[k])
+                if (num == fila[k] || num == columna[k])
                     return false;
             }
             return true;
@@ -828,8 +829,6 @@ namespace PruebasSudoku
                     }
                 }
                 cont++;
-
-
             }
             return resul;
         }
@@ -850,14 +849,27 @@ namespace PruebasSudoku
                     if (ubiX == x && ubiY == y)
                     {
                         if ((ListaFiguras[cont].GetOperacion() == 1) && aumentarOquitar == 1)
+                        {
                             ListaFiguras[cont].AumentarAcumuladoSum(numero);
+                            ListaFiguras[cont].AumentarOcupado(1);
+                        }
                         if ((ListaFiguras[cont].GetOperacion() == 1) && aumentarOquitar == 2)
+                        {
                             ListaFiguras[cont].DisminuirAcumuladoSum(numero);
+                            ListaFiguras[cont].DisminuirOcupado(1);
+                        }
                         if ((ListaFiguras[cont].GetOperacion() == 2) && aumentarOquitar == 1)
+                        {
                             ListaFiguras[cont].AumentarAcumuladoMul(numero);
+                            ListaFiguras[cont].AumentarOcupado(1);
+                        }
                         if ((ListaFiguras[cont].GetOperacion() == 2) && aumentarOquitar == 2)
+                        {
                             ListaFiguras[cont].DisminuirAcumuladoMul(numero);
+                            ListaFiguras[cont].DisminuirOcupado(1);
+                        }
                         flag = true;
+                        
                         break;
                     }
                 }
@@ -894,11 +906,14 @@ namespace PruebasSudoku
                 if (fig.GetTipo() != "solo")
                 {
                     int totalSuma = acumulado + num;
-                    if (totalSuma <= meta)
+                    if ((totalSuma <= meta) && (fig.GetOcupado() < 3))
                         return true;
 
+                    if ((totalSuma == meta) && (fig.GetOcupado() == 3))
+                        return true;
                     else
                         return false;
+                      
                 }
                 else
                     return true;
@@ -907,7 +922,10 @@ namespace PruebasSudoku
             else
             {
                 int totalMul = acumulado * num;
-                if (totalMul <= meta)
+                if ((totalMul <= meta) && (fig.GetOcupado() < 1))
+                    return true;
+
+                if ((totalMul == meta) && (fig.GetOcupado() == 1))
                     return true;
                 else
                     return false;
@@ -925,7 +943,7 @@ namespace PruebasSudoku
                 int aleatorioX = rnd.Next(0, N);
                 int aleatorioY = rnd.Next(0, N);
                 int aleatorioNum = rnd.Next(1, N + 1);
-                if(VerificarColumnas(Tablero,aleatorioNum,aleatorioX,aleatorioY) && VerificarFilas(Tablero,aleatorioNum, aleatorioX, aleatorioY)&&VerificarFigura(Tablero, aleatorioNum, aleatorioX, aleatorioY))
+                if(/*VerificarColumnas(Tablero,aleatorioNum,aleatorioX,aleatorioY) &&*/ VerificarFilasYColumnas(Tablero,aleatorioNum, aleatorioX, aleatorioY)&&VerificarFigura(Tablero, aleatorioNum, aleatorioX, aleatorioY))
 
                     Tablero[aleatorioX, aleatorioY] = aleatorioNum;
                     ModificarFigura(aleatorioX, aleatorioY, aleatorioNum, 1);
@@ -960,7 +978,7 @@ namespace PruebasSudoku
 
             for(int i = 1; i <= N; i++)
             {
-                if (VerificarColumnas(tablero, i, parX, parY) && VerificarFilas(tablero, i, parX, parY) && VerificarFigura(tablero, i, parX, parY)&& VerificarOperacion(tablero,i,parX,parY))
+                if (VerificarFilasYColumnas(tablero, i, parX, parY) && VerificarFigura(tablero, i, parX, parY)&& VerificarOperacion(tablero,i,parX,parY))
                 {
                     Tablero[parX, parY] = i;
                     ModificarFigura(parX, parY, i, 1);

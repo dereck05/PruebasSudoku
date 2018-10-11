@@ -13,16 +13,18 @@ namespace PruebasSudoku
         string Tipo { set; get; }
         int Acumulado { set; get; } 
         Ubicacion[] ListaUbicacion { get; set; }
+        int Ocupado { set; get; }
 
 
 
-        public Figura(Ubicacion[] listaUbicaciones,string type,int numeroMeta, int operacionFigura,int acum)
+        public Figura(Ubicacion[] listaUbicaciones,string type,int numeroMeta, int operacionFigura,int acum,int ocupados)
         {
             NumMeta = numeroMeta;
             Operacion = operacionFigura;
             Tipo = type;
             ListaUbicacion = listaUbicaciones;
             Acumulado = acum;
+            Ocupado = ocupados;
 
         }
 
@@ -46,22 +48,34 @@ namespace PruebasSudoku
         {
             return Acumulado;
         }
+        public int GetOcupado()
+        {
+            return Ocupado;
+        }
+        public void AumentarOcupado(int num)
+        {
+            Ocupado = Ocupado + num;
+        }
+        public void DisminuirOcupado(int num)
+        {
+            Ocupado = Ocupado - num;
+        }
 
         public void AumentarAcumuladoSum(int num)
         {
-            Acumulado = Acumulado += num;
+            Acumulado = Acumulado + num;
         }
         public void AumentarAcumuladoMul(int num)
         {
-            Acumulado = Acumulado *= num;
+            Acumulado = Acumulado * num;
         }
         public void DisminuirAcumuladoSum(int num)
         {
-            Acumulado = Acumulado -= num;
+            Acumulado = Acumulado - num;
         }
         public void DisminuirAcumuladoMul(int num)
         {
-            Acumulado = Acumulado /= num;
+            Acumulado = Acumulado / num;
         }
     }
 
