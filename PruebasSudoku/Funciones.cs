@@ -526,8 +526,8 @@ namespace PruebasSudoku
                     Ubicacion[] list = new Ubicacion[1];
                     list[0] = u1;
 
-                    int nOper = GenerarNumeroOperacion(1);
-                    Figura fig = new Figura(list, "solo", nOper, 1, 0);
+                    
+                    Figura fig = new Figura(list, "solo", 0, 1, 0);
 
                     int index = ListaFiguras.Length;
                     SetListaFiguras(fig);
@@ -891,12 +891,17 @@ namespace PruebasSudoku
             int meta = fig.GetNumMeta();
             if(operacion == 1)
             {
-                int totalSuma = acumulado + num;
-                if (totalSuma <= meta)
-                    return true;
-                
+                if (fig.GetTipo() != "solo")
+                {
+                    int totalSuma = acumulado + num;
+                    if (totalSuma <= meta)
+                        return true;
+
+                    else
+                        return false;
+                }
                 else
-                    return false;
+                    return true;
 
             }
             else
@@ -928,6 +933,19 @@ namespace PruebasSudoku
             }
             return Tablero;
 
+        }
+        public int[,] GenerarSudokuNulo()
+        {
+            
+
+            for(int i = 0; i < N; i++)
+            {
+                for(int j = 0; j < N; j++)
+                {
+                    Tablero[i, j] = 0;
+                }
+            }
+            return Tablero;
         }
 
 

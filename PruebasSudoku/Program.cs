@@ -11,7 +11,7 @@ namespace PruebasSudoku
         static void Main(string[] args)
         {
             
-            int N = 5;
+            int N = 6;
             
 
             TimeSpan stop;
@@ -26,19 +26,23 @@ namespace PruebasSudoku
             f.ImprimirOperaciones();
             //f.ImprimirFiguras();
             Console.WriteLine("------------------------------------------------------------------------------------------");
-            
-            
 
 
-            
-            int[,] sudoku = f.GenerarSudoku();
+
+
+
+            //int[,] sudoku = f.GenerarSudoku();
+            int[,] sudoku = f.GenerarSudokuNulo();
             f.Print(sudoku);
 
-            /*
+            
             Console.WriteLine("  ");
             Console.WriteLine("------------------------------------------------------------------------------------------");
             if (true == f.Resolver(sudoku))
+            {
+                Console.WriteLine("------------------------------------------------------------------------------------------");
                 f.Print(sudoku);
+            }
             else
                 Console.WriteLine("Fail");
 
@@ -46,7 +50,7 @@ namespace PruebasSudoku
             Console.WriteLine();
             Console.WriteLine(stop.Subtract(start).TotalMilliseconds);
 
-            */
+            
             Console.ReadKey();      //para que no se cierre la ventana
           
             
