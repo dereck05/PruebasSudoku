@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PruebasSudoku
-{
-    public class Funciones
-    {
+namespace PruebasSudoku {
+    public class Funciones {
         
 
         int N { set; get; } //este es el tam del tablero 
@@ -18,8 +16,7 @@ namespace PruebasSudoku
         Figura[] ListaFiguras { get; set; }
         public static Random rnd;
 
-        public Funciones(int Num)
-        {
+        public Funciones(int Num) {
             N = Num;
             ListaFiguras = new Figura[N*N];
             Tablero = new int[N, N];
@@ -32,15 +29,11 @@ namespace PruebasSudoku
 
         }
 
-        public Ubicacion NextEmpty(int[,] tab)
-        {
+        public Ubicacion NextEmpty(int[,] tab) {
             Ubicacion ubi;
-            for(int i = 0; i < N; i++)
-            {
-                for(int j = 0; j < N; j++)
-                {
-                    if(tab[i,j] == 0)
-                    {
+            for(int i = 0; i < N; i++) {
+                for(int j = 0; j < N; j++) {
+                    if(tab[i,j] == 0) {
                         ubi = new Ubicacion(i, j);
                         return ubi;
                     }
@@ -51,8 +44,7 @@ namespace PruebasSudoku
 
         }
 
-        public char GenerarOperacion()
-        {
+        public char GenerarOperacion() {
             
 
             int aleatorio = rnd.Next(0,2);
@@ -63,8 +55,7 @@ namespace PruebasSudoku
 
         }
 
-        public bool ComprobarEspacio(int[,] matrizFiguras,string figura,int orientacion, int pivoteX,int pivoteY)  //pivote es par de donde empieza la figura
-        {                                                                                                           
+        public bool ComprobarEspacio(int[,] matrizFiguras,string figura,int orientacion, int pivoteX,int pivoteY) {  //pivote es par de donde empieza la figura                                                                                                            
             
             int ubi1 = 0;
             int ubi2 = 0;
@@ -73,15 +64,13 @@ namespace PruebasSudoku
             
 
             if (figura == "cuadrado") {
-                if (pivoteY + 1 < N && pivoteX + 1 < N)      //Que no se salga de los limites
-                {
+                if (pivoteY + 1 < N && pivoteX + 1 < N) {     //Que no se salga de los limites
                     ubi1 = matrizFiguras[pivoteX, pivoteY];
                     ubi2 = matrizFiguras[pivoteX, pivoteY + 1];
                     ubi3 = matrizFiguras[pivoteX + 1, pivoteY];
                     ubi4 = matrizFiguras[pivoteX + 1, pivoteY + 1];
 
-                    if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0))   //Que no haya casillas ocupadas
-                    {
+                    if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0)) {  //Que no haya casillas ocupadas
                         FigurasArray[pivoteX, pivoteY] = NumFigura;
                         FigurasArray[pivoteX, pivoteY+1] = NumFigura;
                         FigurasArray[pivoteX+1, pivoteY] = NumFigura;
@@ -111,22 +100,17 @@ namespace PruebasSudoku
                 else
                     return false;
             }
-            if (figura == "ele")
-            {
-                if (orientacion == 1 || orientacion == 2 || orientacion == 3 || orientacion == 4)
-                {
+            if (figura == "ele") {
+                if (orientacion == 1 || orientacion == 2 || orientacion == 3 || orientacion == 4) {
 
-                    if (orientacion == 1)
-                    {
-                        if (pivoteX + 2 < N && pivoteY + 1 < N)
-                        {
+                    if (orientacion == 1) {
+                        if (pivoteX + 2 < N && pivoteY + 1 < N) {
                             ubi1 = matrizFiguras[pivoteX, pivoteY];
                             ubi2 = matrizFiguras[pivoteX + 1, pivoteY];
                             ubi3 = matrizFiguras[pivoteX + 2, pivoteY];
                             ubi4 = matrizFiguras[pivoteX + 2, pivoteY + 1];
 
-                            if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0))   //Que no haya casillas ocupadas
-                            {
+                            if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0)) {  //Que no haya casillas ocupadas
                                 FigurasArray[pivoteX, pivoteY] = NumFigura;
                                 FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
                                 FigurasArray[pivoteX + 2, pivoteY] = NumFigura;
@@ -155,17 +139,14 @@ namespace PruebasSudoku
                         else
                             return false;
                     }
-                    if (orientacion == 2)
-                    {
-                        if (pivoteX + 2 < N && pivoteY - 1 > 0)
-                        {
+                    if (orientacion == 2) {
+                        if (pivoteX + 2 < N && pivoteY - 1 > 0) {
                             ubi1 = matrizFiguras[pivoteX, pivoteY];
                             ubi2 = matrizFiguras[pivoteX + 1, pivoteY];
                             ubi3 = matrizFiguras[pivoteX + 2, pivoteY];
                             ubi4 = matrizFiguras[pivoteX + 2, pivoteY - 1];
 
-                            if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0))   //Que no haya casillas ocupadas
-                            {
+                            if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0)) {  //Que no haya casillas ocupadas
                                 FigurasArray[pivoteX, pivoteY] = NumFigura;
                                 FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
                                 FigurasArray[pivoteX + 2, pivoteY] = NumFigura;
@@ -194,19 +175,15 @@ namespace PruebasSudoku
                         else
                             return false;
                     }
-                    if (orientacion == 3 || orientacion == 4)       //ver si en realidad mata dos pajaros de un tiro
-                    {
-                        if (pivoteX + 2 < N && pivoteY + 1 < N)
-                        {
-                            if (orientacion == 3)
-                            {
+                    if (orientacion == 3 || orientacion == 4) {      //ver si en realidad mata dos pajaros de un tiro
+                        if (pivoteX + 2 < N && pivoteY + 1 < N) {
+                            if (orientacion == 3) {
                                 ubi1 = matrizFiguras[pivoteX, pivoteY];
                                 ubi2 = matrizFiguras[pivoteX, pivoteY + 1];
                                 ubi3 = matrizFiguras[pivoteX + 1, pivoteY + 1];
                                 ubi4 = matrizFiguras[pivoteX + 2, pivoteY + 1];
 
-                                if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0))   //Que no haya casillas ocupadas
-                                {
+                                if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0)) {  //Que no haya casillas ocupadas
                                     FigurasArray[pivoteX, pivoteY] = NumFigura;
                                     FigurasArray[pivoteX, pivoteY + 1] = NumFigura;
                                     FigurasArray[pivoteX + 1, pivoteY + 1] = NumFigura;
@@ -232,15 +209,13 @@ namespace PruebasSudoku
                                 else
                                     return false;
                             }
-                            if (orientacion == 4)
-                            {
+                            if (orientacion == 4) {
                                 ubi1 = matrizFiguras[pivoteX, pivoteY];
                                 ubi2 = matrizFiguras[pivoteX, pivoteY + 1];
                                 ubi3 = matrizFiguras[pivoteX + 1, pivoteY];
                                 ubi4 = matrizFiguras[pivoteX + 2, pivoteY];
 
-                                if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0))   //Que no haya casillas ocupadas
-                                {
+                                if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0)) {  //Que no haya casillas ocupadas 
                                     FigurasArray[pivoteX, pivoteY] = NumFigura;
                                     FigurasArray[pivoteX, pivoteY + 1] = NumFigura;
                                     FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
@@ -276,19 +251,15 @@ namespace PruebasSudoku
                     return false;
 
             }
-            if(figura == "linea")
-            {
-                if(orientacion == 1) //vertical
-                {
-                    if (pivoteX + 3 < N)
-                    {
+            if(figura == "linea") {
+                if(orientacion == 1) { //vertical
+                    if (pivoteX + 3 < N) {
                         ubi1 = matrizFiguras[pivoteX, pivoteY];
                         ubi2 = matrizFiguras[pivoteX + 1, pivoteY];
                         ubi3 = matrizFiguras[pivoteX + 2, pivoteY];
                         ubi4 = matrizFiguras[pivoteX + 3, pivoteY];
 
-                        if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0))   //Que no haya casillas ocupadas
-                        {
+                        if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0)) {  //Que no haya casillas ocupadas
                             FigurasArray[pivoteX, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 2, pivoteY] = NumFigura;
@@ -317,17 +288,14 @@ namespace PruebasSudoku
                     else
                         return false;
                 }
-                if(orientacion == 2)  //horizontal
-                {
-                    if (pivoteY + 3 < N)
-                    {
+                if(orientacion == 2) { //horizontal
+                    if (pivoteY + 3 < N) {
                         ubi1 = matrizFiguras[pivoteX, pivoteY];
                         ubi2 = matrizFiguras[pivoteX , pivoteY+1];
                         ubi3 = matrizFiguras[pivoteX , pivoteY+2];
                         ubi4 = matrizFiguras[pivoteX , pivoteY+3];
 
-                        if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0))   //Que no haya casillas ocupadas
-                        {
+                        if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0)) {  //Que no haya casillas ocupadas
                             FigurasArray[pivoteX, pivoteY] = NumFigura;
                             FigurasArray[pivoteX, pivoteY + 1] = NumFigura;
                             FigurasArray[pivoteX, pivoteY + 2] = NumFigura;
@@ -357,19 +325,15 @@ namespace PruebasSudoku
                         return false;
                 }
             }
-            if(figura == "te")
-            {
-                if(orientacion == 1)
-                {
-                    if (pivoteY - 1 >= 0 && pivoteY+1 < N && pivoteX +1 < N)
-                    {
+            if(figura == "te") {
+                if(orientacion == 1) {
+                    if (pivoteY - 1 >= 0 && pivoteY+1 < N && pivoteX +1 < N) {
                         ubi1 = matrizFiguras[pivoteX, pivoteY];
                         ubi2 = matrizFiguras[pivoteX +1, pivoteY ];
                         ubi3 = matrizFiguras[pivoteX + 1, pivoteY - 1];
                         ubi4 = matrizFiguras[pivoteX+1, pivoteY +1];
 
-                        if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0))   //Que no haya casillas ocupadas
-                        {
+                        if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0)) {  //Que no haya casillas ocupadas
                             FigurasArray[pivoteX, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY - 1] = NumFigura;
@@ -395,17 +359,14 @@ namespace PruebasSudoku
                             return false;
                     }
                 }
-                if (orientacion == 2)
-                {
-                    if (pivoteY + 2 < N && pivoteX + 1 < N)
-                    {
+                if (orientacion == 2) {
+                    if (pivoteY + 2 < N && pivoteX + 1 < N) {
                         ubi1 = matrizFiguras[pivoteX, pivoteY];
                         ubi2 = matrizFiguras[pivoteX, pivoteY + 1];
                         ubi3 = matrizFiguras[pivoteX, pivoteY + 2];
                         ubi4 = matrizFiguras[pivoteX + 1, pivoteY + 1];
 
-                        if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0))   //Que no haya casillas ocupadas
-                        {
+                        if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0)) {  //Que no haya casillas ocupadas
                             FigurasArray[pivoteX, pivoteY] = NumFigura;
                             FigurasArray[pivoteX, pivoteY + 1] = NumFigura;
                             FigurasArray[pivoteX, pivoteY + 2] = NumFigura;
@@ -434,19 +395,15 @@ namespace PruebasSudoku
                 else
                     return false;
             }
-            if (figura == "snake")      //la figura que parece una serpiente
-            {
-                if(orientacion == 1)  //horizontal
-                {
-                    if(pivoteY - 1 >= 0 && pivoteY + 1 < N && pivoteX + 1 < N)
-                    {
+            if (figura == "snake") {     //la figura que parece una serpiente
+                if(orientacion == 1) { //horizontal
+                    if(pivoteY - 1 >= 0 && pivoteY + 1 < N && pivoteX + 1 < N) {
                         ubi1 = matrizFiguras[pivoteX, pivoteY];
                         ubi2 = matrizFiguras[pivoteX+1, pivoteY ];
                         ubi3 = matrizFiguras[pivoteX+1, pivoteY - 1];
                         ubi4 = matrizFiguras[pivoteX , pivoteY + 1];
 
-                        if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0))   //Que no haya casillas ocupadas
-                        {
+                        if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0)) {  //Que no haya casillas ocupadas
                             FigurasArray[pivoteX, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY - 1] = NumFigura;
@@ -474,17 +431,14 @@ namespace PruebasSudoku
                             return false;
                     }
                 }
-                if (orientacion == 2)  //vertical
-                {
-                    if (pivoteY + 1 < N && pivoteX + 2 < N)
-                    {
+                if (orientacion == 2) { //vertical
+                    if (pivoteY + 1 < N && pivoteX + 2 < N) {
                         ubi1 = matrizFiguras[pivoteX, pivoteY];
                         ubi2 = matrizFiguras[pivoteX+1, pivoteY ];
                         ubi3 = matrizFiguras[pivoteX + 1, pivoteY + 1];
                         ubi4 = matrizFiguras[pivoteX + 2, pivoteY + 1];
 
-                        if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0))   //Que no haya casillas ocupadas
-                        {
+                        if ((ubi1 == 0) && (ubi2 == 0) && (ubi3 == 0) && (ubi4 == 0)) {  //Que no haya casillas ocupadas
                             FigurasArray[pivoteX, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY + 1] = NumFigura;
@@ -515,11 +469,9 @@ namespace PruebasSudoku
                 }
 
             }
-            if(figura == "solo")
-            {
+            if(figura == "solo") {
                 ubi1 = matrizFiguras[pivoteX, pivoteY];
-                if (ubi1 == 0)
-                {
+                if (ubi1 == 0) {
                     FigurasArray[pivoteX, pivoteY] = NumFigura;
                     Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
                     
@@ -537,17 +489,13 @@ namespace PruebasSudoku
                 else
                     return false;
             }
-            if (figura == "dos")
-            {
-                if (orientacion == 1)   //vertical
-                {
-                    if (pivoteX + 1 < N)
-                    {
+            if (figura == "dos") {
+                if (orientacion == 1) {  //vertical
+                    if (pivoteX + 1 < N) {
                         ubi1 = matrizFiguras[pivoteX, pivoteY];
                         ubi2 = matrizFiguras[pivoteX + 1, pivoteY];
 
-                        if (ubi1 == 0 && ubi2 == 0)
-                        {
+                        if (ubi1 == 0 && ubi2 == 0) {
                             FigurasArray[pivoteX, pivoteY] = NumFigura;
                             FigurasArray[pivoteX + 1, pivoteY] = NumFigura;
                             Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
@@ -570,15 +518,12 @@ namespace PruebasSudoku
                     else
                         return false;
                 }
-                if (orientacion == 2)   //horizontal
-                {
-                    if (pivoteY + 1 < N)
-                    {
+                if (orientacion == 2) {  //horizontal
+                    if (pivoteY + 1 < N) {
                         ubi1 = matrizFiguras[pivoteX, pivoteY];
                         ubi2 = matrizFiguras[pivoteX , pivoteY+1];
 
-                        if (ubi1 == 0 && ubi2 == 0)
-                        {
+                        if (ubi1 == 0 && ubi2 == 0) {
                             FigurasArray[pivoteX, pivoteY] = NumFigura;
                             FigurasArray[pivoteX , pivoteY+1] = NumFigura;
                             Ubicacion u1 = new Ubicacion(pivoteX, pivoteY);
@@ -605,15 +550,12 @@ namespace PruebasSudoku
             return false;
         }
     
-        public void ImprimirTableroFiguras()   //Este imprime el backtracking
-        {
+        public void ImprimirTableroFiguras() {  //Este imprime el backtracking
             string S = "";
-            for(int i = 0; i < N; i++)
-            {
+            for(int i = 0; i < N; i++) {
                 
                 S = "";
-                for(int j = 0; j < N; j++)
-                {
+                for(int j = 0; j < N; j++) {
                     string myStr = FigurasArray[i, j].ToString();
                     S += myStr + "       ";
                 }
@@ -621,15 +563,12 @@ namespace PruebasSudoku
             }
         }
 
-        public void Print(int[,] arr)   //Funcion que imprime un array X
-        {
+        public void Print(int[,] arr) {  //Funcion que imprime un array X
             string S = "";
-            for (int i = 0; i < N; i++)
-            {
+            for (int i = 0; i < N; i++) {
 
                 S = "";
-                for (int j = 0; j < N; j++)
-                {
+                for (int j = 0; j < N; j++) {
                     string myStr = arr[i, j].ToString();
                     S += myStr + "       ";
                 }
@@ -637,26 +576,21 @@ namespace PruebasSudoku
             }
         }
 
-        public void GenerarFiguras()
-        {
+        public void GenerarFiguras() {
             Random rnd = new Random();
             string[] TipoFigura = new string[7] { "ele", "cuadrado", "linea" ,"snake","solo","te","dos"};
             
             int ori = 0;
-            for(int i = 0; i < N; i++)
-            {
-                for(int j = 0; j < N; j++)
-                {
-                    if (FigurasArray[i, j] == 0)
-                    {
+            for(int i = 0; i < N; i++) {
+                for(int j = 0; j < N; j++) {
+                    if (FigurasArray[i, j] == 0) {
                         int fig = rnd.Next(0, 7);
                         if (fig == 0)
                             ori = rnd.Next(1, 5);
                         else
                             ori = rnd.Next(1, 3);
 
-                        while (ComprobarEspacio(FigurasArray, TipoFigura[fig], ori, i, j) != true)
-                        {
+                        while (ComprobarEspacio(FigurasArray, TipoFigura[fig], ori, i, j) != true) {
                             fig = rnd.Next(0, 7);
                             if (fig == 0)
                                 ori = rnd.Next(1, 5);
@@ -673,24 +607,20 @@ namespace PruebasSudoku
 
            
         }
-        public int GenerarNumeroOperacion(int tipo)     //1. suma  2. multip.
-        {
+        public int GenerarNumeroOperacion(int tipo) {    //1. suma  2. multip.
             
             
-            if(tipo == 1)
-            {
+            if(tipo == 1) {
                 int limiteMin = 10;
                 int limiteMax = N + (N - 1) + (N - 2) + (N - 3);
                 int num = rnd.Next(limiteMin, limiteMax + 1);
                 return num;
 
             }
-            else
-            {
+            else {
                 bool flag = true;
                 int num = 0;
-                while (flag)
-                {
+                while (flag) {
                     
                     num = rnd.Next(2, (N * (N - 1))+1);
                     if ((VerificarPrimo(num) == false) && (MultipFactible(num) == true))
@@ -702,12 +632,9 @@ namespace PruebasSudoku
             }
             
         }
-        public bool MultipFactible(int n)
-        {
-            for(int i = 1; i <= N; i++)
-            {
-                for(int j = 1; j <= N; j++)
-                {
+        public bool MultipFactible(int n) {
+            for(int i = 1; i <= N; i++) {
+                for(int j = 1; j <= N; j++) {
                    
                     int mul = i * j;
                     if ((mul == n) &&(i != j))
@@ -717,19 +644,16 @@ namespace PruebasSudoku
             return false;
         }
 
-        public void ImprimirFiguras()
-        {
+        public void ImprimirFiguras() {
             int cont = 0;
             
-            while(ListaFiguras[cont] != null)
-            {
+            while(ListaFiguras[cont] != null) {
                 Figura f = ListaFiguras[cont];
                 string tipoFigura = f.GetTipo();
                 Ubicacion[] ubicaciones = f.GetLista();
                 Console.WriteLine("Figura:" + tipoFigura);
                 int cont2 = 0;
-               while(cont2<ubicaciones.Length)
-                {
+               while(cont2<ubicaciones.Length) {
                     Ubicacion ubi = ubicaciones[cont2];
                     string str1 = ubi.GetX().ToString();
                     string str2 = ubi.GetY().ToString();
@@ -739,12 +663,10 @@ namespace PruebasSudoku
                 cont++;
             }
         }
-        public void ImprimirOperaciones()
-        {
+        public void ImprimirOperaciones() {
             int cont = 0;
 
-            while (ListaFiguras[cont] != null)
-            {
+            while (ListaFiguras[cont] != null) {
                 Figura f = ListaFiguras[cont];
                 int operacion = f.GetOperacion();
                 string numMeta = f.GetNumMeta().ToString();
@@ -756,14 +678,11 @@ namespace PruebasSudoku
             }
         }
 
-        public void SetListaFiguras(Figura fig)
-        {
+        public void SetListaFiguras(Figura fig) {
             int cont = 0;
             bool bandera = false;
-            while(bandera != true)
-            {
-                if (ListaFiguras[cont] == null)
-                {
+            while(bandera != true) {
+                if (ListaFiguras[cont] == null) {
                     ListaFiguras[cont] = fig;
                     bandera = true;
                 }
@@ -774,26 +693,20 @@ namespace PruebasSudoku
         
        
 
-        public bool VerificarFilasYColumnas(int[,] tablero, int num, int coordenadaX,int coordenadaY)
-        {
+        public bool VerificarFilasYColumnas(int[,] tablero, int num, int coordenadaX,int coordenadaY) {
             int[] fila = new int[N];
             int[] columna = new int[N];
             int contF = 0;
             int contCol = 0;
             
-            for(int i = 0; i < N; i++)
-            {
-                for(int j = 0; j < N; j++)
-                {
-                    if( (j == coordenadaY)|| (i == coordenadaX))
-                    {
-                        if (j == coordenadaY)
-                        {
+            for(int i = 0; i < N; i++) {
+                for(int j = 0; j < N; j++) {
+                    if( (j == coordenadaY)|| (i == coordenadaX)) {
+                        if (j == coordenadaY) {
                             fila[contF] = tablero[i, j];
                             contF++;
                         }
-                        if (i == coordenadaX)
-                        {
+                        if (i == coordenadaX) {
                             columna[contCol] = tablero[i, j];
                             contCol++;
                         }
@@ -801,28 +714,24 @@ namespace PruebasSudoku
                 }
             }
 
-            for (int k = 0; k < N; k++)
-            {
+            for (int k = 0; k < N; k++) {
                 if (num == fila[k] || num == columna[k])
                     return false;
             }
             return true;
         }
         
-        public Figura BuscarFigura(int x , int y)
-        {
+        public Figura BuscarFigura(int x , int y) {
             Figura resul = null;
             int cont = 0;
             bool flag = false;
             while (ListaFiguras != null && flag == false) {
                 Figura fig = ListaFiguras[cont];
                 Ubicacion[] ubi = fig.GetLista();
-                for(int i = 0; i < ubi.Length; i++)
-                {
+                for(int i = 0; i < ubi.Length; i++) {
                     int ubiX = ubi[i].GetX();
                     int ubiY = ubi[i].GetY();
-                    if(ubiX == x && ubiY == y)
-                    {
+                    if(ubiX == x && ubiY == y) {
                         resul = fig;
                         flag = true;
                         break;
@@ -832,39 +741,31 @@ namespace PruebasSudoku
             }
             return resul;
         }
-        public void ModificarFigura(int x, int y , int numero, int aumentarOquitar)    //1 = aumentar , 2 = quitar
-        {
+        public void ModificarFigura(int x, int y , int numero, int aumentarOquitar) {   //1 = aumentar , 2 = quitar
             
             int cont = 0;
             
             bool flag = false;
-            while (ListaFiguras != null && flag == false)
-            {
+            while (ListaFiguras != null && flag == false) {
                 Figura fig = ListaFiguras[cont];
                 Ubicacion[] ubi = fig.GetLista();
-                for (int i = 0; i < ubi.Length; i++)
-                {
+                for (int i = 0; i < ubi.Length; i++) {
                     int ubiX = ubi[i].GetX();
                     int ubiY = ubi[i].GetY();
-                    if (ubiX == x && ubiY == y)
-                    {
-                        if ((ListaFiguras[cont].GetOperacion() == 1) && aumentarOquitar == 1)
-                        {
+                    if (ubiX == x && ubiY == y) {
+                        if ((ListaFiguras[cont].GetOperacion() == 1) && aumentarOquitar == 1) {
                             ListaFiguras[cont].AumentarAcumuladoSum(numero);
                             ListaFiguras[cont].AumentarOcupado(1);
                         }
-                        if ((ListaFiguras[cont].GetOperacion() == 1) && aumentarOquitar == 2)
-                        {
+                        if ((ListaFiguras[cont].GetOperacion() == 1) && aumentarOquitar == 2) {
                             ListaFiguras[cont].DisminuirAcumuladoSum(numero);
                             ListaFiguras[cont].DisminuirOcupado(1);
                         }
-                        if ((ListaFiguras[cont].GetOperacion() == 2) && aumentarOquitar == 1)
-                        {
+                        if ((ListaFiguras[cont].GetOperacion() == 2) && aumentarOquitar == 1) {
                             ListaFiguras[cont].AumentarAcumuladoMul(numero);
                             ListaFiguras[cont].AumentarOcupado(1);
                         }
-                        if ((ListaFiguras[cont].GetOperacion() == 2) && aumentarOquitar == 2)
-                        {
+                        if ((ListaFiguras[cont].GetOperacion() == 2) && aumentarOquitar == 2) {
                             ListaFiguras[cont].DisminuirAcumuladoMul(numero);
                             ListaFiguras[cont].DisminuirOcupado(1);
                         }
@@ -879,12 +780,10 @@ namespace PruebasSudoku
             
 
         }
-        public bool VerificarFigura(int [,] tablero, int num, int coordenadaX, int coordenadaY)
-        {
+        public bool VerificarFigura(int [,] tablero, int num, int coordenadaX, int coordenadaY) {
             Figura fig = BuscarFigura(coordenadaX, coordenadaY);
             Ubicacion[] listaPosiciones = fig.GetLista();       //busca posiciones de una figura en el tablero
-            for(int i = 0; i < listaPosiciones.Length; i++)
-            {
+            for(int i = 0; i < listaPosiciones.Length; i++) {
                 Ubicacion ubi = listaPosiciones[i];
                 int x = ubi.GetX();
                 int y = ubi.GetY();
@@ -895,16 +794,13 @@ namespace PruebasSudoku
             return true;
 
         }
-        public bool VerificarOperacion(int[,] tablero, int num, int coordenadaX, int coordenadaY)
-        {
+        public bool VerificarOperacion(int[,] tablero, int num, int coordenadaX, int coordenadaY) {
             Figura fig = BuscarFigura(coordenadaX, coordenadaY);
             int operacion = fig.GetOperacion();
             int acumulado = fig.GetAcumulado();
             int meta = fig.GetNumMeta();
-            if(operacion == 1)
-            {
-                if (fig.GetTipo() != "solo")
-                {
+            if(operacion == 1) {
+                if (fig.GetTipo() != "solo") {
                     int totalSuma = acumulado + num;
                     if ((totalSuma <= meta) && (fig.GetOcupado() < 3))
                         return true;
@@ -919,8 +815,7 @@ namespace PruebasSudoku
                     return true;
 
             }
-            else
-            {
+            else {
                 int totalMul = acumulado * num;
                 if ((totalMul <= meta) && (fig.GetOcupado() < 1))
                     return true;
@@ -933,12 +828,10 @@ namespace PruebasSudoku
 
         }
         
-        public int[,] GenerarSudoku()
-        {
+        public int[,] GenerarSudoku() {
             int cont = 0;
           
-            while (cont <= N)
-            {
+            while (cont <= N) {
                 
                 int aleatorioX = rnd.Next(0, N);
                 int aleatorioY = rnd.Next(0, N);
@@ -952,14 +845,11 @@ namespace PruebasSudoku
             return Tablero;
 
         }
-        public int[,] GenerarSudokuNulo()
-        {
+        public int[,] GenerarSudokuNulo() {
             
 
-            for(int i = 0; i < N; i++)
-            {
-                for(int j = 0; j < N; j++)
-                {
+            for(int i = 0; i < N; i++) {
+                for(int j = 0; j < N; j++) {
                     Tablero[i, j] = 0;
                 }
             }
@@ -967,8 +857,7 @@ namespace PruebasSudoku
         }
 
 
-        public bool Resolver(int [,] tablero)
-        {
+        public bool Resolver(int [,] tablero) {
             Ubicacion ubi = NextEmpty(tablero);
             if (ubi.GetX() == -1 && ubi.GetY() == -1)       //resuelto
                 return true;
@@ -976,10 +865,8 @@ namespace PruebasSudoku
             int parX = ubi.GetX();
             int parY = ubi.GetY();
 
-            for(int i = 1; i <= N; i++)
-            {
-                if (VerificarFilasYColumnas(tablero, i, parX, parY) && VerificarFigura(tablero, i, parX, parY)&& VerificarOperacion(tablero,i,parX,parY))
-                {
+            for(int i = 1; i <= N; i++) {
+                if (VerificarFilasYColumnas(tablero, i, parX, parY) && VerificarFigura(tablero, i, parX, parY)&& VerificarOperacion(tablero,i,parX,parY)) {
                     Tablero[parX, parY] = i;
                     ModificarFigura(parX, parY, i, 1);
                     //Console.WriteLine("-------------------------------------------------------------------------");
@@ -999,10 +886,8 @@ namespace PruebasSudoku
             return false;
         }
 
-        public bool VerificarPrimo(int n)
-        {
-            for (int i = 1; i < n; i++)
-            {
+        public bool VerificarPrimo(int n) {
+            for (int i = 1; i < n; i++) {
                 if ((n % i == 0) && (i != 1 && i != n))
                     return false;
             }
